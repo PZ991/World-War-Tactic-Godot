@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://rn7gfsgcyfjs"]
+
+[ext_resource type="Script" path="res://TranslateTest.gd" id="1_uvfwg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5rr2m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhj3k"]
+albedo_color = Color(0.662745, 0.329412, 0.329412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r2aku"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xaj4l"]
+size = Vector3(8.5381, 1, 8.61052)
+
+[sub_resource type="BoxMesh" id="BoxMesh_48ij6"]
+
+[node name="Scene" type="Node3D"]
+
+[node name="Cube" type="Node3D" parent="."]
+script = ExtResource("1_uvfwg")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Cube"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/RigidBody3D"]
+shape = SubResource("BoxShape3D_5rr2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube/RigidBody3D/CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_mhj3k")
+mesh = SubResource("BoxMesh_r2aku")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.82974, 0, -0.558151, 0, 1, 0, 0.558151, 0, 0.82974, -2.86493, 0, 4.77188)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.463943, 0.568817, -0.67912, 0.72161, 0.202012, 0.662171, 0.513844, -0.797269, -0.316742, -1.68088, -2.38419e-07, -4.27298)
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6217, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Node3D"]
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0935647, -0.113787, 0.0385921)
+shape = SubResource("BoxShape3D_xaj4l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/RigidBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_48ij6")
